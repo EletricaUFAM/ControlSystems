@@ -1,0 +1,55 @@
+numg1=30
+
+numg1 =
+
+    30
+
+>> deng1=[0.35 1]
+
+deng1 =
+
+    0.3500    1.0000
+
+>> g1=tf(numg1,deng1)
+ 
+Transfer function:
+    30
+----------
+0.35 s + 1
+ 
+>> numc1=[0.041 1]
+
+numc1 =
+
+    0.0410    1.0000
+
+>> denc1=[0.041 0]
+
+denc1 =
+
+    0.0410         0
+
+>> c1=tf(numc1,denc1)
+ 
+Transfer function:
+0.041 s + 1
+-----------
+  0.041 s
+ 
+>> rlocus(c1*g1)
+>> sgrid(0.49,0)
+
+>> >> c1d=c2d(c1,2.24,'tustin')
+ 
+Transfer function:
+28.32 z + 26.32
+---------------
+     z - 1
+ 
+Sampling time: 2.24
+>> 
+>> num2=1
+
+num2 =
+
+     1

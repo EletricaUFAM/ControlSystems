@@ -1,0 +1,460 @@
+
+
+
+	Emu48 - A freeware HP38/39/40/48/49 Emulator
+	        for Windows 9x, ME, NT, 2000 and XP
+
+
+
+	********************
+	* OPERATING SYSTEM *
+	********************
+
+This version of Emu48 should work with all Intel Win32 platforms. You may
+recompile the sources to run Emu48 with Windows NT on a DEC Alpha.
+
+
+	****************
+	* INSTALLATION *
+	****************
+
+Emu48 is distributed in 1 archive:
+- Emu48-1_30.zip		All files and sources
+
+To install Emu48, just unzip Emu48-1_30.zip into an empty directory. When you
+first run Emu48, it will detect the directory in which you installed it, and
+will write its configuration to a file named Emu48.ini in your Windows
+directory. If you move the Emu48 directory to another place you have to change
+the directory path inside the Emu48.ini file manually or have to delete the
+Emu48.ini file.
+
+You can also update your current version with the Unofficial Service Packs:
+- E48BP3x.ZIP			New EXE-File
+- E48SP3x.ZIP			Sources of the Service Pack
+
+Replace the original EXE file please.
+
+
+	************************
+	* YOU NEED A ROM IMAGE *
+	************************
+
+Emu48 needs an image of a calculator ROM to be able to run. Since fall 2000 the
+emulator ROM's for the HP38, 39, 40, 48 and 49 are freely available on different
+internet sites. Because there's no license for the distribution of the ROM
+images, they aren't included in the Emu48 package. You can still use the classic
+way extracting them from your own calculator. But in mostly all cases you have
+to convert the ROM files into the Emu48 ROM format.
+
+- HP38:
+To upload the ROM of your HP38G, you will need a special aplet called "ROM
+UPLOAD", available at http://www.epita.fr/~avenar_j/hp. Once you've uploaded the
+ROM, you have to convert it using the Convert utility.
+
+To do that, start a Command Prompt while running Windows, and type:
+	Convert <rom-file> ROM.38G
+
+Where <rom-file> is the path to your ROM image. This will create a file named
+ROM.38G. This tool will also check its validity.
+
+- HP39/40:
+To upload the ROM of your HP39G/HP40G, you will need a special aplet called "ROM
+UPLOAD", available at http://privat.swol.de/ChristophGiesselink/emu48.htm. Once
+you've uploaded the ROM, you have to convert it using the Rom2emu utility.
+
+To do that, start a Command Prompt while running Windows, and type:
+	Rom2emu <rom-file> ROM.39G
+
+There's also a HP39G/HP40G beta ROM for emulators at
+http://www.epita.fr/~avenar_j/hp/39.htm for download.
+
+- HP48:
+If you have already used another HP48 emulator, you can convert the ROM using
+the Convert utility.
+
+To do that, start a Command Prompt while running Windows, and type:
+	Convert <rom-file> ROM.48G
+or	Convert <rom-file> ROM.48S
+
+Where <rom-file> is the path to your old ROM image. This will create a file
+named ROM.48G or ROM.48S, depending on the version you own. This tool should be
+able to read any style of ROM image, and will also check its validity. Note that
+if you run it with only one parameter, no file will be written, but it will
+still check the validity of the ROM.
+
+If you have never used an HP48 emulator, and don't have a ROM dump, you can
+either use Jean-Yves Avenard's ROMUPL.BIN or the ROMDump Wizard V1.x, which will
+almost automatically get the ROM from your HP48. After the download you may have
+to convert your dump with the CONVERT utility into the Emu48 format.
+
+You can find the latest version of the ROM dump programs on:
+ROMUPL.BIN	http://www.epita.fr/~avenar_j/hp/calcen.html
+ROMDump Wizard	http://privat.swol.de/ChristophGiesselink/index.htm
+
+- HP49:
+There's no ROM download program available so far. But you can find a HP49G ROM
+for emulators in the YorkeM emulator package or in the HP49G SDK on
+http://www.hpcalc.org in the HP49 section.
+
+
+	****************
+	* HOW TO START *
+	****************
+
+When Emu48 is installed and you have put the ROM image(s), which must be in the
+Emu48 ROM format, into the Emu48 directory, you can start Emu48. You'll see a
+"Choose Your KML Script" box.
+
+KML Scripts in fact define the visual aspect of Emu48, the behavior of the
+buttons, of the keyboard, ... It's a GREAT way to customize your copy of Emu48.
+
+Check that the path in the "Emu48 Directory" text area is correct. Modify it if
+the directory in which you installed Emu48 is not the directory displayed. Click
+the refresh button ("V") after modifying it to update the list box or use the
+("...") button to start the directory browser.
+
+Choose a KML script in the list box for your calculator ROM you put into Emu48's
+directory.
+
+Several HP48 scripts are included in the Emu48 archive:
+    * Emu48's Default Faceplate for HP48G/GX
+    * Emu48's Default Faceplate for HP48S/SX
+	These two are simple scripts, good for 800x600 display resolution.
+    * Casey's Gx with Toolbar and Touch Screen
+    * Casey's Sx with Toolbar and Touch Screen
+	These script uses many advanced features, and is a good demonstration of
+	the power of Emu48's scripting language KML. Try it, it is really great!
+    * Floating buttons
+	This one looks really great.
+    * Small but realistic HP48 Gx
+	This one has been designed for small resolutions such as 640x480.
+	Note: some things in this script have to be fixed.
+
+If you want other great scripts, visit Rechlin's great HP archive
+	http://www.hpcalc.org/
+
+And if you are interested in writing new scripts, get the KML 2.0 documentation
+from Christoph's page at http://privat.swol.de/ChristophGiesselink/emu48.htm
+
+Once you have selected a script, press OK to start the emulator. In most cases,
+when Emu48 crash after pressing the OK button, you forgot to convert the ROM
+image into the emulator format. While it's running, you can use the View/Change
+KML Script... command to change the visual aspect of Emu48.
+
+
+	***************
+	* KML SCRIPTS *
+	***************
+
+Don't use TRUELCD.KMI for emulating display contrast in your scripts. It's not
+fully correct. The hardware contrast values are in the area from 0 to 31. But
+the ROMs bounds them to useful values. The HP48 S(X) ROM use only display
+contrast values between 3 and 19 and the HP48 G(X) ROM values between 9 and 24.
+
+Maybe you have to adjust the "Rom" filename in the "Global" section. This mostly
+happen with the HP49G ROM name. Some KML files use the name ROM.E49, that's the
+name of the emulator ROM file published by HP. But Emu48 state files for the
+HP49G have the same file extension, so the use of ROM.49G is preferred now.
+
+
+	****************
+	* COMMAND LINE *
+	****************
+
+The command line syntax is "Emu48 [E48file [Port2file]]". The first parameter
+sets the filename for the emulation data, the second parameter the Port2 file.
+You're not able to set a Port 2 file without setting the emulation data file.
+The arguments are optional.
+
+
+	*******************
+	* LOAD/SAVE FILES *
+	*******************
+
+There are two ways to transfer files from or to the emulator. The one way is to
+use the serial port to transfer the data directly from your HP to the emulator.
+The second way is to load data, saved on your PC, into the stack of the
+emulator. You can do this by using the Edit/Load Object... command or with the
+file Drag and Drop feature. But there's one important restriction, the data must
+a HP binary file (begin with HPHP48- or HPHP49-, this depends on your emulated
+calculator)! If not, the data is load as string. The Edit/Save Object... command
+will save the data in stack level 1 on the PC (always binary mode). Be sure,
+when you use the second way for data transfer, that no program is running on the
+emulator. The second way doesn't work on a HP38, because he has no stack. So you
+can load aplets only from the serial port.
+
+
+	*****************
+	* DRAG AND DROP *
+	*****************
+
+Dropping HP objects over the emulator window will load program files (like the
+command "Load object...") on the stack. Be sure that the emulator isn't busy
+before doing this.
+
+
+	*******************
+	* SHARED RAM CARD *
+	*******************
+
+You can add a SHARED (explained below) RAM card of up to 4MB to a HP48. By
+default, no such card will be created when you start Emu48. The MkShared.exe
+utility will allow you to create it.
+
+To create a Port 2 RAM Card, call the program, select the RAM Card size, enter
+the card file name and press the 'Create' button. That's it. Please remember,
+this program replace the destination file without any request!
+
+If you use RAM cards greater than 128 KB in a HP48SX, you can only see the first
+128 KB of the card. Please remember, the firmware of all HP48GX versions has a
+bug when using a 4MB RAM card. You always get the message "Warning: Invalid Card
+Data" at startup and Port 33 is unaccessible. This is not a bug of the emulator!
+
+When you have created this file, run Emu48, and use the Close menu item to close
+the calculator state. Now select File/Settings. In the "Port 2" text area, type
+the name of the file you created (if you don't include a path, it will be
+searched for in Emu48's directory).
+
+You can also tick the check box "Port 2 Is Shared". When the box is cleared,
+only the first instance of Emu48 will allow you to use the RAM card in Port 2.
+When this box is checked, the first instance of Emu48 will give you both read
+and write access to this RAM card. If you start Emu48 in another instance, the
+RAM card in Port 2 will be write-protected. Thus you can transfer files very
+easily between two calculators. This RAM card is used by both S/SX and G/GX
+types.
+
+
+	***********************
+	* FLASH ROM EMULATION *
+	***********************
+
+The HP49G save the operation system in a reprogramable memory, a so called flash
+memory. The flash memory is divided into two parts, into the Operating System
+and into a User Data area. The User Data area is viewed as Port 2 in the HP49G.
+Emu48 saves the Port 2 data in the ROM file (normally ROM.49G). As default
+setting the ROM file is writeable in the first instance of Emu48. When you open
+another instance of a HP49G emulation the Port 2 area is READ ONLY, that mean
+all changes in Port 2 are lost when you exit this instance. If you don't want to
+save data in Port 2 and want to protect the operating systems from overwriting,
+you're able protect the ROM file. To do this, close all Emu48 instances and set
+the variable 'Writeable' defined in the Emu48.ini file, section [ROM] to zero.
+
+
+	***********************
+	* COPY / PASTE STRING *
+	***********************
+
+With the menu items "Copy String" and "Paste String" in the "Edit" menu you're
+able to copy HP string objects from the stack to the PC clipboard and vice
+versa.
+
+
+	**********
+	* BACKUP *
+	**********
+
+Emu48 includes a backup feature (in the Edit menu). It save the complete state
+of the calculator (excepting the ROM and Port 2 content) in the computer's
+memory. You might want to use it before doing something risky, and if you don't
+want to save to the disk. It provides some kind of Undo feature. It is also used
+by Emu48 when you want to save or load a new document, to restore its old state
+if you cancel the operation or of something goes wrong.
+
+
+	************
+	* KEYBOARD *
+	************
+
+To enter a character to the emulator use the PC keyboard (key translation
+depends on the used KML script) or the mouse. If you press the left mouse
+button, the emulator key is pressed as long as you press the mouse button or
+leaving the area of the emulator button. Sometimes you need to press more then
+one key (contrast setting, warmstart, ...). To do this, press the right mouse
+button. All "locked" buttons are released after enter a key with the left mouse
+button.
+
+
+	*********
+	* CLOCK *
+	*********
+
+The emulator time is synchronized with the PC time at startup of the emulator.
+This may cause problems with other non original operating systems running on the
+HP. On HP48 S(X) calculators the address area #00052-#00070, on all other
+emulated calculators the address area #00058-#00076 in System RAM are rewritten
+with the actual time information.
+
+
+	*************
+	* EMU48.INI *
+	*************
+
+The section [Timers] in the Emu48.ini file isn't used any more. The variable
+values are replaced by useful constants. You may delete this section if you
+want. Starting an old version of Emu48 (V1.07 and earlier) will add this section
+again. If you move the Emu48 directory to another place, you have to adjust the
+variable 'Emu48Directory' in the [Files] section.
+
+
+	************************
+	* REAL SPEED EMULATION *
+	************************
+
+As you recognized the speed of the emulated HP is much faster than an original
+one. The reason is, the assembler commands are emulated faster than the original
+CPU can execute them. On one side this is a big advantage (faster execution of
+programs) on the other side this cause many trouble. In Emu48 only the timers
+work with the original speed. In result all commands like User-RPL WAIT wait
+more or less the correct time. But many programs like shells or editors use an
+own key handler to realize an autorepeat implementation. Normally these programs
+use the execution time of each assembler command for waiting. On Emu48 this time
+is much shorter, so the time between each key read is shorter as well and you
+get a very fast key repetition. The editor ED from the JAZZ package hasn't this
+problem, because the key input is synchronized with one of the timers. To solve
+this problem Emu48 generally slow down emulation if a key is pressed. To solve
+some other speed depending problems you are able to slow down the whole
+emulation speed. There are two variables 'SXCycles=82' and 'GXCycles=123'
+defined in the Emu48.ini file, section [Emulator] which control the "real" speed
+and key repetition slow down for each calculator type. Each numeric value is
+representing the allowed CPU cycles in a 16384Hz time frame. Because the used
+cycle statements (from SASM.DOC) in Emu48 doesn't correspond to the real values
+of the CPU, the saved values are estimated by comparing the execution time of a
+program to the real calculator. Increasing the value fitting to your ROM will
+make the "real speed" HP faster and vice versa. No warranty to the functionality
+of Emu48 when you go below the default values.
+
+
+	*************************
+	* SERIAL PORT EMULATION *
+	*************************
+
+The serial ports are emulated as well now. You may choose the same serial port
+for wire and IR. Remember that the IR port only work with 2400 Baud. If you want
+to change the serial port settings, but they are disabled, close the serial port
+with the command CLOSEIO or power cycle the HP first.
+
+Now it's possible to make transfers between the real calculator and Emu48. If
+you have problems with the connection please try the following. There's a simple
+way to check if your serial port is used by another program. First disable the
+serial settings in both combo boxes and very important close the settings
+dialog. Reopen the settings dialog and choose the COM port in the wire combo box
+to the port the HP is connected with. When you open this combo box you only see
+valid (unused) serial ports. Don't use the IR combo box, it only works with 2400
+Baud. The next important thing are the serial settings of the real calculator
+and Emu48, they must be equal. If this doesn't work then mostly there's a
+hardware or a resource problem of the serial port. Check this with connecting
+the HP with a transfer program you like on the same serial port.
+
+
+	****************
+	* DISASSEMBLER *
+	****************
+
+With the internal disassembler you're able to disassemble the Saturn chip
+address area. With the default Map setting the disassembler always see the
+mapped memory address. If for example you configured the RAM at #00000 you will
+see the RAM and not the ROM at this address. With the other module settings you
+specify a special module for disassembly. Each module use a linear address mode,
+beginning at address #00000 and will not overlapped by other modules. So, for
+example, you can access the second port of a HP48 RAM card greater than 128KB at
+address #40000 (128 * 1024 * 2). The "Copy Data" button copies the selected
+disassembler lines to the PC clipboard.
+
+
+	**************
+	* DDE SERVER *
+	**************
+
+I implemented a DDE server in Emu48 to transmit data from and to the HP stack
+with DDE. You have the same restrictions like with the commands "Load object..."
+and "Save Object...", that a running program may corrupt memory. Take care to
+transmit data only after the acknowledge of the last DDE transaction.
+
+Technical data:
+
+Servername:      Emu48
+Topicname:       Stack
+Item:            - (ignored, must be a nonzero string)
+Clipboardformat: "CF_HPOBJ" (user defined)
+
+The DDE commands CONNECT, POKE and REQUEST are supported.
+
+The structure of the clipboard format "CF_HPOBJ":
+
++--------+------------------------------------+
+| 4 Byte |             HP object              |
++--------+------------------------------------+
+    \        \
+     \        +--- normal HP object
+      +----------- length of object (LSB first)
+
+
+	********************
+	* TROUBLE SHOOTING *
+	********************
+
+Visit the Emu48 FAQ site at http://privat.swol.de/ChristophGiesselink/index.htm
+to get more information please.
+
+
+	***********
+	* SUPPORT *
+	***********
+
+We cannot provide any individual support for Emu48. All informations about Emu48
+will be on the Emu48 Official Homepage on the Web:
+
+	http://www.epita.fr/~sebc/Emu48/index.html
+
+or on the Emu48 FAQ at
+
+	http://privat.swol.de/ChristophGiesselink/index.htm
+
+
+	***************
+	* LEGAL STUFF *
+	***************
+
+Emu48 - An HP38/39/40/48/49 Emulator
+Copyright (C) 2003 Sebastien Carlier & Christoph Gieﬂelink
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+Place, Suite 330, Boston, MA  02111-1307  USA
+
+
+	***************
+	* The Authors *
+	***************
+
+Paper Mail:
+	Sebastien Carlier
+	10 Allee des bergeronnettes
+	35340 LIFFRE
+	FRANCE
+
+E-Mail:
+	sebc@epita.fr
+
+Homepage:
+	http://www.epita.fr/~sebc/Emu48/index.html
+
+
+Paper Mail:
+	Christoph Giesselink
+	GERMANY
+
+E-Mail:
+	c dot giesselink at gmx dot de
+
+Homepage:
+	http://privat.swol.de/ChristophGiesselink/index.htm

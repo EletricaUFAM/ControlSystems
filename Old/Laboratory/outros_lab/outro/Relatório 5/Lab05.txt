@@ -1,0 +1,2 @@
+x3' = ((mp*L)^2*g*sin(u[2])*cos(u[2])+4/3*mp*L^2*(-1*B*u[3]+mp*L*u[4]^2*sin(u[2])+u[1]))/((M+mp)*4/3*mp*L^2-(mp*L)^2*cos(u[2])^2)
+x4' = -1*(mp*L*cos(u[2])*(-1*B*u[3]+mp*L*u[4]^2*sin(u[2])+u[1])+(M+mp)*mp*g*L*sin(u[2]))/((M+mp)*4/3*mp*L^2-(mp*L)^2*cos(u[2])^2)

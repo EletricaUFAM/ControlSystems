@@ -1,0 +1,24 @@
+%%Forma canônica do controlador%%
+A = [-3/4,1/4,-1/2; 1/4,1/4,-1/2; 1/2,1/2,-1/2]
+B = [3/4;-1/4;-1/4]
+C = [-3/2, -3/2, 0]
+D = [3/2]
+
+w = ctrb(A, B)
+
+rank(w)
+%%polinomio característico%%
+poly(A)
+
+CB = C * w
+
+Q2 = [1,1,0.5;0,1,1;0,0,1]
+
+Q = w * Q2
+
+CCHAP = C * Q
+
+%%para encontrar a função de transferencia
+P = ss(A,B,C,D);
+
+H = tf(P)

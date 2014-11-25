@@ -1,0 +1,20 @@
+% N1 - numerador
+% D1 - denominador
+N1 = [1];
+D1 = [1 4 5 0];
+
+% Funcao de Transferencia
+G1 = tf(N1,D1);
+% Transfer function G1:
+%         1
+% -----------------
+% s^3 + 4 s^2 + 5 s
+
+% Traca o root locus
+rlocus(G1)
+grid on
+sgrid(0.5,0)
+
+% K = ganho
+% r = polos dominantes
+[K,r]=rlocfind(num,den) 

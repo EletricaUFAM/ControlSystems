@@ -1,0 +1,297 @@
+Debugger in Emu48/Tools/Debugger...
+-----------------------------------
+
+This is a short description of the internal assembly debugger of Emu48.
+
+The debugger was designed to help customers inspecting assembler code objects, a part that cannot be handled satisfactorily by the JAZZ package. Thanks to Mika Heiskanen and all the others supporting this great program.
+
+After starting the debugger the emulation will stop at the current program counter position. The emulation will continue after closing the debugger window. Please remember that the clock now shows the wrong time.
+
+
+1.) Menu Debug
+
+- Run F5
+
+Continue calculator emulation under debugger control. The emulation will stop at a breakpoint. Please remember that the emulation speed is slower than without debugger control.
+
+- Run to Cursor F6
+
+Execute program until address at cursor position is reached. Breakpoints are still active and may stop execution before.
+
+- Step Into F7
+
+Execute one code instruction.
+
+- Step Over F8
+
+Execute a GOSUB, GOSUBL or GOSBVL as one instruction. Normally the instruction cursor will set to the position behind the GOSUB instruction.
+
+But this makes trouble in the following code part:
+
+        GOSUB   +
+        NIBASC  /Hello world/
++       C=RSTK
+
+The program counter will never reach the address behind the GOSUB instruction. The debugger solve this problem by breaking the emulation when the stack has the same level before the GOSUB instruction. In this example the single step execution will continue after the C=RSTK instruction.
+
+- Step Out F9
+
+Continue the program until a RTI, RTN, RTNC, RTNCC, RTNNC, RTNSC, RTNSXN, RTNYES instruction is found above the current stack level.
+
+At some code constructions (mostly used to save space on the hardware stack) like
+
+        C=RSTK
+        PC=C
+
+and
+
+        C=RSTK
+        RSTK=C
+        RTN
+
+the stop address will be wrong. The problem in both code fragments is the C=RSTK opcode. In the first example there is no RTN instruction to stop. In the second one the C=RSTK instruction purge the original return address and then the RSTK=C instruction is interpreted as a GOSUB instruction.
+
+In opposite the following code will work fine:
+
+        RSTK=C
+        ..
+        code            <- F9 was pressed here
+        ..
+        GOSUB   -
+        C=RSTK
+        RTN             <- emulation will stop after this instruction
+-       RTN
+
+So be careful using the F9 key.
+
+- Break F11
+
+Stops the emulation at the current program counter position.
+
+
+2.) Menu Breakpoints
+
+- Set Breakpoint F2
+
+Toggle a code breakpoint at the cursor position in the Code window.
+
+- Edit Breakpoints...
+
+You get a sorted list of all current breakpoints. When the breakpoint is checked it's enabled otherwise it's disabled. With "Add" you can add a new or enable an existing breakpoint, with "Delete" you can delete the selected ones. Addresses greater than #FFFFF are cut after the fifths nibble. When adding a new breakpoint, you must select if this is a "Code", "RPL", "Memory Access", "Memory Read" or "Memory Write" breakpoint.
+
+  - "Code" stop before opcode execution on this address
+  - "RPL" stop on the first opcode of the selected RPL address
+  - "Memory Access" stop before reading or writing to the selected address
+  - "Memory Read" stop before reading the selected address
+  - "Memory Write" stop before writing to the selected address
+
+With a left mouse button double click on a breakpoint you can toggle the check box inside. When you use the space key instead, on all selected breakpoints the check box is toggled.
+
+- Clear All Breakpoints
+
+Clear all address specific breakpoints.
+
+- NOP3 Code Breakpoints
+
+What are NOP3 code breakpoints? As you know user programs are loaded somewhere in memory and can be moved after a garbage collection. So it's very difficult to break a user program at a hard set breakpoint with F2. To solve this problem the debugger will stop emulation at a NOP3 opcode. So you can easily add a NOP3 command into your sources to force a break condition. To enable this you have to check this item.
+
+NOP3 and NOP3, what's the difference? The Saturn CPU has no NOP command, so NOP3 is an opcode that is three nibbles long and doesn't change a register. In the HP SASM.DOC document two different opcodes are defined for NOP3:
+
+  Opcode 820 for HST=0 0
+
+and
+
+  Opcode 420 for GOC + (next line)
+
+In the assembler of the HPTOOLS 3.x package NOP3 is defined as opcode 820. The advantage of the opcode is that the execution time is always the same, independent from the carry flag. This code is used in the HP48 ROM as well. So I decided to use the GOC opcode for a code breakpoint condition.
+
+A short example how to use a NOP3 Code breakpoint:
+
+ASSEMBLE
+  NIBASC /HPHP48-E/
+
+BREAK   MACRO
+        CON(3)  #024            NOP3
+        ENDM
+
+RPL
+CODE
+        BREAK                   code breakpoint
+
+        GOSBVL  =SAVPTR         save register
+
+        GOSUB   +               problem for step over
+        NIBASC  /Hello world/
++       C=RSTK
+
+        GOVLNG  =GETPTRLOOP
+ENDCODE
+
+- CODE Object Breakpoints
+
+If this item is checked, the debugger stops program execution at the first instruction of every DOCODE object which isn't located in ROM. For inspecting DOCODE objects in ROM use address CODE breakpoints instead please.
+
+- RPL Breakpoints
+
+If this item is checked, the debugger stops program execution on every instruction called after a PC=(A) or PC=(C) opcode. This is normally the begin of a new RPL command. RPL breakpoints use a "-R" marker instead of the assembler "->" PC position marker.
+
+
+3.) Menu Interrupts
+
+- Step Over Interrupts
+
+If this item is checked, interrupt handler code will be skipped. This option is useful when you don't want to debug the interrupt handler. But be careful, when you disable the interrupts all code until interrupt enable belong to the interrupt handler code and couldn't executed in single step any more. Enabled breakpoints are still active.
+
+You can also use this option if you want to quit the interrupt handler. Just check this option, press F7 for "Step Into" for stopping the debugger behind the RTI instruction, and uncheck this option again.
+
+
+4.) Menu Info
+
+- Last Instructions...
+
+This is a short viewer for the last 255 executed CPU addresses. The disassembled opcode maybe wrong, because only the CPU address of each command was saved and memory mapping may have changed meanwhile. In the "Last Instructions" dialog you can copy selected lines to the clipboard or clear this list.
+
+- Profiler...
+
+This opens a small toolbox window which shows the number of CPU cycles and the corresponding execution time of the instruction sequence between the last two breakpoints. The CPU cycles are only approximate values, the real cycles are depending mostly on the used ROM to Saturn CPU core interface.
+
+- Write Only Registers...
+
+Some of the display registers have a different meaning on reading and writing. This dialog shows the data written to the write only I/O registers.
+
+
+5.) Code window
+
+This windows shows you the disassembled code. The line with the current PC is marked with a "->" or "-R" between the address and the disassembly.
+
+You can use the UP, PAGE UP, DOWN and PAGE DOWN keys to scroll the window content. There is one strange behavior, when you move to higher addresses the debugger is able to disassemble the next line correctly, but when you move to cursor to lower addresses the debugger does not know if this address is at the begin or inside of an opcode. In result you get wrong disassembled lines.
+
+Context menu pressing the right mouse button:
+
+- Go to address... G
+
+Moves the cursor to the specified code address.
+
+- Go to PC
+
+Sets the cursor to the actual position of the PC.
+
+- Set breakpoint F2
+
+Toggle a code breakpoint at the cursor position in the Code window.
+
+- Set PC to selection
+
+Set the PC to the cursor position. Be careful with this command, you change the execution order of the commands!
+
+
+6.) Register window
+
+Here you can see the actual contents of the CPU registers. The values are only updated at a program execution stop. All changed CPU registers are highlighted.
+
+With the left mouse button you change the content of the register. On bit registers, like CY and Mode, the state change immediately without any request.
+
+
+7.) Memory window
+
+This windows shows the memory content in the selected context.
+
+You can use the arrow, PAGE UP and PAGE DOWN keys to move the cursor to a memory position. With a double click on the left mouse button (only in Map mode) you can change the content of the two addresses. When the memory position is read only (ROM or write protected RAM) the content wouldn't change.
+
+Context menu pressing the right mouse button:
+
+- Go to address... G
+
+Moves the cursor to the specified memory address.
+
+- Go to PC
+
+Sets the cursor to the actual position of the PC.
+
+- Go to D0
+
+Sets the cursor to the actual position of the D0 register.
+
+- Go to D1
+
+Sets the cursor to the actual position of the D1 register.
+
+- Go to Stack
+
+Sets the cursor to the return address placed in the top level of the stack.
+
+- Find... F
+
+Calls the "Find" dialog box, allowing you to search for a data sequence in hexadecimal or ASCII mode. The search area is selected by the memory view Mapping mode described in the following section. When you close the "Find" dialog box, you will loose all saved strings in the data combo box.
+
+- Mapping
+
+Mapping is a Pop-up menu to select the memory view of the Memory window. Normally the CPU see only 512KB of the total memory, the rest is banked or covered by other modules. The following menu entries select the memory chip connected with the chosen Chip Select signal of the MMU. The connections are calculator model dependent.
+
+- Mapping Map
+
+This is the default mode. Here the Memory window shows what the CPU see. In this mode you can also change the memory content of writeable memory.
+
+- Mapping NCE1/NCE2/CE1/CE2/NCE3
+
+Here the Memory window shows the content of the selected Chip Select signal. The content is showed in a linear address model and it's content can't be changed in this mode.
+
+Here's a comparison of the mapping of the emulated calculator models:
+
+Abbreviations: ROM   = Read Only Memory
+               RAM   = Random Access Memory
+               Flash = electrical reprogramming ROM
+               Slt   = Memory Card Slot
+               BS    = Bank Switcher (no memory)
+               nc.   = not connected
+
+     |  HP38G    |  HP39/40G  |   HP48S/SX    |  HP48G/G+/GX  |    HP49G
+-----------------------------------------------------------------------------
+NCE1 | ROM 512KB | ROM 1024KB | ROM     256KB | ROM     512KB | Flash 2048KB
+NCE2 | RAM  32KB | RAM  128KB | RAM      32KB | RAM  32/128KB | RAM    256KB
+CE1  | nc.       | BS         | Slt1 32/128KB | BS            | BS
+CE2  | nc.       | nc.        | Slt2 32/128KB | Slt1 32/128KB | RAM    128KB
+NCE3 | nc.       | RAM  128KB | nc.           | Slt2 32KB-4MB | RAM    128KB
+
+
+8.) Stack window
+
+The content of the hardware stack is viewed here. In "1:" is the current return address. A double click on an item shows the address content in the Code window.
+
+Context menu pressing the right mouse button:
+
+- Push
+
+Push a new element before the current selection onto the stack.
+
+- Pop
+
+Pop the selected element from the stack.
+
+- Modify
+
+Modifies the stack content of the current selection.
+
+
+9.) MMU window
+
+The configuration of the memory controllers is viewed here. The viewed addresses are the first address of each module area and may differ from the given address in the CONFIG command.
+
+This example
+
+        LC(5)   #C0000          128KB size
+        CONFIG
+        LC(5)   #98765          start address of module
+        CONFIG
+
+will config a 128KB module at address #80000 and not at the given address. So the MMU viewer will show you the address #80000.
+
+
+10.) Miscellaneous window
+
+The Miscellaneous window show you the internal state of the interrupt flag, the 1ms keyboard handler and the contents of the Bank Switcher latch. The Bank Switcher item is only enabled on calculators with a latch inside. You see the loaded value of the address lines A6-A0. You have to ignore the last bit (A0), because it isn't wired to the six bit latch.
+
+You can change the values by pressing the left mouse button over the old content.
+
+
+02/03/04 (c) by Christoph Gieﬂelink

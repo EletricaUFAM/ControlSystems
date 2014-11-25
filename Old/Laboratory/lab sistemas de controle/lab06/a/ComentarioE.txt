@@ -1,0 +1,1 @@
+As matrizes de controlabilidade e do controlador estão na forma canônica. E não há necessidade de cálculo para determinar o polinômio característico e a função de transferência.

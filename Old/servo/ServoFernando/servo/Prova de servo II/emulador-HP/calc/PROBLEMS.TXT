@@ -1,0 +1,58 @@
+Known bugs and restrictions of Emu48 V1.35
+------------------------------------------
+
+- the following I/O bits aren't emulated (incomplete)
+  DTEST   (0x102) [VDIG LID TRIM]
+  DSPCTL  (0x103) [LRT LRTD LRTC BIN]
+  LPD     (0x108) [LB2 LB1 LB0 VLBI]
+  LPE     (0x109) [ELBI EVLBI GRST RST]
+  CMODE   (0x10A) Mode register
+  IOC     (0x110) [ERBZ]
+  RCS     (0x111) [RX RER RBZ]
+  SRQ1    (0x118) [ISQR VSRQ]
+  SRQ2    (0x119) [LSRQ]
+  IRC     (0x11A) [IRI EIRU EIRI IRE]
+  LCR     (0x11C) [LED ELBE LBZ LBF]
+  LBR     (0x11D) [LBO]
+- the baudrates 1920, 3840, 7680 and 15360 aren't emulated on most
+  operating systems
+  Windows 95a         1920, 3840, 7680 work, 15360 fail
+  Windows 98          all baudrates fail
+  Windows NT4.0 SP3   all baudrates fail
+- problems when receiving a break signal on the serial port
+  Windows 98, NT4.0 SP4 no retrigger on port open
+  Windows 98 timing problems setting the RER bit
+  Windows 2000 SP2 no known problems
+- System-RPL commands VERYVERYSLOW, VERYSLOW and SLOW depends on PC
+  speed (are realized as simple down counter in ROM)
+- display updating differs from the real machine
+- screen VBL counter values may skip after large display operations
+  like turning on or updating the whole display
+- executing an opcode over a MMU boundary will fail
+- read on an unconfigured address (open data bus) will not show the
+  same value like a real calculator
+- the Yorke hardware signals BEN and DA19 aren't fully supported,
+  because the emulator don't use a multiplexed AR18 / NCE3 data line
+  -> all programs that run on a real calculator will run as well,
+  programs with incorrect DA19 / BEN handling may run on the
+  emulator but will crash on a real calculator
+- incomplete reset logic of the bank switcher FF, on real
+  calculators a reset happen after about 4s in deep sleep, in the
+  emulator this happens immediately
+- no MP interrupt on card control circuit or timer restart
+- no beeper support with OUT command -> all programs that aren't
+  use the "=makebeep" subroutine, like alarm wake up, have no sound
+- beeper emulation, ATTN key doesn't work,
+  Windows 9x: plays only default sound event or standard system beep
+- no infrared printer support
+- Shell OS: clock isn't synchronized with real time
+- HP49G: the flash memory is emulated now with some restrictions
+  - no flash programming times, the flash state machine returns
+    immediately the ready signal
+  - only one write buffer, second not needed because of prior reason
+  - not fully tested, especially the status byte may return
+    incorrect values (error bits)
+  - quitting the emulator while programming the flash isn't allowed,
+    because the content of flash state machine isn't saved so far
+
+08/31/04 (c) by Christoph Gieﬂelink, c dot giesselink at gmx dot de

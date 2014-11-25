@@ -1,0 +1,52 @@
+Shows the assigned keys to the EMU when using the
+normal KML-file.
+
+  PC Keyb   1st function    alpha       shift          ctrl
+==================================================================
+     A           F1           A           Y=
+     B           F2           B          WIN
+     C           F3           C         GRAPH
+     D           F4           D         2D/3D
+     E           F5           E         TBLSET
+     F           F6           F         TABLE
+     G          APPS          G         FILES         BEGIN
+     H          MODE          H         CUSTOM         END
+     I          TOOL          I           J             |
+     J           VAR          J         UPDIR          COPY
+     K           STO          K          RCL           CUT
+     L           NXT          L          PREV         PASTE
+     M          HIST          M          CMD           UNDO
+     N           CAT          N          PRG          CHARS
+     O           EQW          O          MTRW           '
+     P          SYMB          P          MTH           EVAL
+     Q          y ^ x         Q         e ^ x           LN
+     R         x ^ 1/2        R         x ^ 2       y ^ INV(x)
+     S           SIN          S          ASIN          SUM
+     T           COS          T          ACOS          DEF
+     U           TAN          U          ATAN          INT
+     V           EEX          V         10 ^ x         LOG
+     W           +/-          W         NOT =           =
+     X            x           X           =<            <
+     Y           INV          Y           =>            >
+NUM / or Z        :           Z          ABS           ARG
+   BKSPC         <=         BKSPC        DEL          CLEAR
+   NUM *          *         NUM *        [ ]           " "
+   NUM -          -         NUM -        ( )            _
+   NUM +          +         NUM +        { }          << >>
+   ENTER        ENTER       ENTER        ANS         --> NUM
+    TAB         ALPHA       ALPHA        USER         ENTRY
+   SHIFT     RIGHT SHIFT
+   CTRL      LEFT SHIFT
+   SPACE         SPC         SPC          pi            ,
+    ESC          ON          ESC         CONT          OFF
+     .            .           .           ::        LINE BREAK
+     0            0           0        INFINITY        -->
+     1            1           1         ARITH         CMPLX
+     2            2           2          DEF           LIB
+     3            3           3           #            BASE
+     4            4           4          CALC          ALG
+     5            5           5        MATRICES        STAT
+     6            6           6        CONVERT        UNITS
+     7            7           7         S.SLV        NUM.SLV
+     8            8           8         EXP&LN         TRIG
+     9            9           9        FINANCE         TIME

@@ -1,0 +1,10 @@
+kdu diz: kd a primeira e a terceira?
+zeta = 0,5
+Mp = 0,16
+
+kdu diz: os passos dados lá da questao 1 é só pra achar o Kp né? tipo como fazia lá em servo 1?
+
+kdu diz: o kp é 0,211 ou o,00524? eu pego o maior é?
+
+pq que o sampling time é de 2,24? onde foi achado esse valor?
+

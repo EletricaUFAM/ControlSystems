@@ -1,0 +1,12 @@
+========================================================================
+== V 2.2 Build 2 ============================================================
+========================================================================
+- - NEW FEATURES - -
+
+-Includes EMU48 patch 1.36 which can emulate a 49G+ or 48GII..
+-Includes KML for a 49G+ and 48Gii
+
+- - BUG FIXES - -
+-Adjusted EMU48 interface to handle new calculator types.
+
+

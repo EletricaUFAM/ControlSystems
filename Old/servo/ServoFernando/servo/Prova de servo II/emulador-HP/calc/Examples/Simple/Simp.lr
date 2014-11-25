@@ -1,0 +1,49 @@
+Saturn Loader, Ver. version 3.0.3, 11/11/98
+
+
+Output Module:
+Module=temp.o
+  Start=00000 End=001B4 Length=001B5   Symbols=  22 References=  42
+  Date=Fri Oct 04 16:32:30 2002   Title=
+
+
+Source modules:
+Module=SInf.o
+  Start=00000 End=001B4 Length=001B5
+  Date=Fri Oct 04 16:32:30 2002   Title=                                        Fri Oct 04 16:32:30 2002
+
+Saturn Cross Reference Listing
+
+'DROPFALSE                       *       - 0005B 000F1 00175
+
+DOCOL                            *       - 00000
+DOCSTR                           *       - 00005 00031 0008D 00119 0017A
+DOLIST                           *       - 00079
+DOREAL                           *       - 000C7 000DC
+DROP                             *       - 001AB
+DoInputForm                      *       - 001A6
+
+EIGHT                            *       - 00065
+
+FIFTY                            *       - 00060 000F6
+FORTY                            *       - 0006A
+
+MINUSONE                         *       - 000BD 000C2 0010F 00157 0015C
+
+NINE                             *       - 0002C 0006F 00105
+
+ONE                              *       - 00027 00051 00074
+
+SEMI                             *       - 00083 001B0
+SIX                              *       - 00100
+SInf                             * 00000 -
+
+THIRTYTWO                        *       - 0010A
+TRUE                             *       - 00161 00166
+TWENTYFIVE                       *       - 00056
+TWENTYTWO                        *       - 000FB
+TWO                              *       - 00088 00114 0016B 00170
+
+ZERO                             *       - 0007E
+
+/SLOAD:  End of Saturn Loader Execution

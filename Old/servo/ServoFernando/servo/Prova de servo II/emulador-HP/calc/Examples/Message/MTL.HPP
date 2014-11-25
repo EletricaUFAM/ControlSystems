@@ -1,0 +1,29 @@
+[Main]
+library=1
+directory=0
+AutoLoad=1
+Calc48=0
+KeepAll=0
+UseDefaultEntryList=1
+LoadOnly=0
+EMUVisible=0
+EntryPointList=
+Title=MTL:Test Messages
+Config=
+ExtPrg=
+Message=
+Romid=3ED
+Slot=0
+Emu48Ram=..\..\Emu\default.e48
+Emu48Port2=..\..\Emu\default.bin
+Emu49Ram=..\..\Emu\default.e49
+FilePath=MTL.hp
+DirPath=
+RPL_INCLUDE=
+SasmParams=
+LRFiles=
+Memo1=First string of project textóöSecond project messageóöand a third project message
+[Files]
+file1=MTL.s
+[Edit]
+edit1=MTL.s

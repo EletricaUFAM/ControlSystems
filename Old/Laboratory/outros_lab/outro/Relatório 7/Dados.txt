@@ -1,0 +1,430 @@
+A = [(-1/RC)*(2-K) (1/RC)*K -1/RC ; (1/RC)*K (1/RC)*K -1/RC ; (1/(2*RC))*(1+2*K) (1/(2*RC))*(1+2*K) -1/RC]
+B = [1/RC*(2-K) ; (-1/RC)*K ; (-1/RC)*K]
+C = [-(1+K) -(1+K) 0 ; 1 0 0 ; 0 1 0 ; 0 0 1]
+D = [1+K ; 0 ; 0 ; 0]
+
+No MATLAB usar esta
+A = [(-1/RC)*(2-K) (1/RC)*K -1/RC ; (1/RC)*K (1/RC)*K -1/RC ; (1/(2*RC))*(1+2*K) (1/(2*RC))*(1+2*K) -1/RC]
+B = [1/RC*(2-K) ; (-1/RC)*K ; (-1/RC)*K]
+C = [-(1+K) -(1+K) 0]
+D = [1+K]
+
+Ele possui zeros complexos
+S = -1/2
+S = +- j1/2
+
+O sistema está oscilando porque possui 2 pólos complexos
+esse S complexo é uma frequência
+Como ele possui zero em 1/2, então ele mata a frequência 1/2
+Como o 2o sistema está com a frequência do seno de entrada em 1/2, sua saída é morta pelo sistema.
+Este sistema é chamado de filtro Noch
+
+
+Somente a submatriz da parte que tem 0 é a parte não controlável, então ela não entra na função de transferência.
+Somente entra na função de transferência a parte controlável.
+expm(A) retorna a matriz de transição de estado
+
+##########
+para u=0
+x(0) != 0
+quer saber x(5)
+x(S) = PHI(5,0)*x(0) = E^(A*5)*x(0)
+						|-=> expm(5*A)*x(0)
+##########
+
+MATLAB
+
+>> K = 1/2
+
+K =
+
+    0.5000
+
+>> RC = 2
+
+RC =
+
+     2
+
+>> A = [(-1/RC)*(2-K) (1/RC)*K -1/RC ; (1/RC)*K (1/RC)*K -1/RC ; (1/(2*RC))*(1+2*K) (1/(2*RC))*(1+2*K) -1/RC]
+B = [1/RC*(2-K) ; (-1/RC)*K ; (-1/RC)*K]
+C = [-(1+K) -(1+K) 0 ; 1 0 0 ; 0 1 0 ; 0 0 1]
+D = [1+K ; 0 ; 0 ; 0]
+
+A =
+
+   -0.7500    0.2500   -0.5000
+    0.2500    0.2500   -0.5000
+    0.5000    0.5000   -0.5000
+
+
+B =
+
+    0.7500
+   -0.2500
+   -0.2500
+
+
+C =
+
+   -1.5000   -1.5000         0
+    1.0000         0         0
+         0    1.0000         0
+         0         0    1.0000
+
+
+D =
+
+    1.5000
+         0
+         0
+         0
+
+>> C = [-(1+K) -(1+K) 0]
+
+C =
+
+   -1.5000   -1.5000         0
+
+>> D = [1+K]
+
+D =
+
+    1.5000
+
+>> P = ss(A,B,C,D)
+ 
+a = 
+          x1     x2     x3
+   x1  -0.75   0.25   -0.5
+   x2   0.25   0.25   -0.5
+   x3    0.5    0.5   -0.5
+ 
+b = 
+          u1
+   x1   0.75
+   x2  -0.25
+   x3  -0.25
+ 
+c = 
+         x1    x2    x3
+   y1  -1.5  -1.5     0
+ 
+d = 
+        u1
+   y1  1.5
+ 
+Continuous-time model.
+>> V = ctrb(P)
+
+V =
+
+    0.7500   -0.5000    0.2500
+   -0.2500    0.2500   -0.2500
+   -0.2500    0.3750   -0.3125
+
+>> rank (V)
+
+ans =
+
+     3
+
+>> Q = ctrb(P)
+
+Q =
+
+    0.7500   -0.5000    0.2500
+   -0.2500    0.2500   -0.2500
+   -0.2500    0.3750   -0.3125
+
+>> Abarra = inv(Q)*A*Q
+
+Abarra =
+
+   -0.0000    0.0000   -0.1250
+    1.0000   -0.0000   -0.5000
+         0    1.0000   -1.0000
+
+>> Bbarra = inv(Q)*B
+
+Bbarra =
+
+    1.0000
+         0
+    0.0000
+
+>> Cbarra = C*Q
+
+Cbarra =
+
+   -0.7500    0.3750         0
+
+>> Dbarra = D
+
+Dbarra =
+
+    1.5000
+
+>> delta = poly(A)
+
+delta =
+
+    1.0000    1.0000    0.5000    0.1250
+
+>> delta = poly(Abarra)
+
+delta =
+
+    1.0000    1.0000    0.5000    0.1250
+
+>> ctrb(Abarra, Bbarra)
+
+ans =
+
+    1.0000   -0.0000    0.0000
+         0    1.0000   -0.0000
+    0.0000   -0.0000    1.0000
+
+>> Q2 = [1 1 1/2 ; 0 1 1 ; 0 0 1]
+
+Q2 =
+
+    1.0000    1.0000    0.5000
+         0    1.0000    1.0000
+         0         0    1.0000
+
+>> Q
+
+Q =
+
+    0.7500   -0.5000    0.2500
+   -0.2500    0.2500   -0.2500
+   -0.2500    0.3750   -0.3125
+
+>> Q1 = Q
+
+Q1 =
+
+    0.7500   -0.5000    0.2500
+   -0.2500    0.2500   -0.2500
+   -0.2500    0.3750   -0.3125
+
+>> Q = Q1*Q2
+
+Q =
+
+    0.7500    0.2500    0.1250
+   -0.2500         0   -0.1250
+   -0.2500    0.1250   -0.0625
+
+>> Achapeu = inv(Q)*A*Q
+
+Achapeu =
+
+   -1.0000   -0.5000   -0.1250
+    1.0000         0         0
+         0    1.0000         0
+
+>> Bchapeu = inv(Q)*B
+
+Bchapeu =
+
+    1.0000
+         0
+    0.0000
+
+>> Cchapeu = C*Q
+
+Cchapeu =
+
+   -0.7500   -0.3750         0
+
+>> Dchapeu=D
+
+Dchapeu =
+
+    1.5000
+
+>> G = tf(P)
+ 
+Transfer function:
+1.5 s^3 + 0.75 s^2 + 0.375 s + 0.1875
+-------------------------------------
+      s^3 + s^2 + 0.5 s + 0.125
+ 
+Warning: Using a default value of 0.2 for maximum step size.  The simulation step size will be
+equal to or less than this value.  You can disable this diagnostic by setting 'Automatic solver
+parameter selection' diagnostic to 'none' in the Diagnostics page of the configuration
+parameters dialog.
+Warning: Using a default value of 0.4 for maximum step size.  The simulation step size will be
+equal to or less than this value.  You can disable this diagnostic by setting 'Automatic solver
+parameter selection' diagnostic to 'none' in the Diagnostics page of the configuration
+parameters dialog.
+Warning: Using a default value of 0.4 for maximum step size.  The simulation step size will be
+equal to or less than this value.  You can disable this diagnostic by setting 'Automatic solver
+parameter selection' diagnostic to 'none' in the Diagnostics page of the configuration
+parameters dialog.
+>> G2 = zpk(P)
+ 
+Zero/pole/gain:
+ 1.5 (s+0.5) (s^2 + 0.25)
+---------------------------
+(s+0.5) (s^2 + 0.5s + 0.25)
+
+
+
+Warning: Using a default value of 0.4 for maximum step size.  The simulation step size will be
+equal to or less than this value.  You can disable this diagnostic by setting 'Automatic solver
+parameter selection' diagnostic to 'none' in the Diagnostics page of the configuration
+parameters dialog.
+>> K = 1
+
+K =
+
+     1
+
+>> RC = 2
+
+RC =
+
+     2
+
+>> A = [(-1/RC)*(2-K) (1/RC)*K -1/RC ; (1/RC)*K (1/RC)*K -1/RC ; (1/(2*RC))*(1+2*K) (1/(2*RC))*(1+2*K) -1/RC]
+
+A =
+
+   -0.5000    0.5000   -0.5000
+    0.5000    0.5000   -0.5000
+    0.7500    0.7500   -0.5000
+
+>> B = [1/RC*(2-K) ; (-1/RC)*K ; (-1/RC)*K]
+
+B =
+
+    0.5000
+   -0.5000
+   -0.5000
+
+>> C = [-(1+K) -(1+K) 0]
+
+C =
+
+    -2    -2     0
+
+>> D = [1+K]
+
+D =
+
+     2
+
+>> V = ctrb(A,B)
+
+V =
+
+    0.5000   -0.2500    0.1250
+   -0.5000    0.2500   -0.1250
+   -0.5000    0.2500   -0.1250
+
+>> rank (V)
+
+ans =
+
+     1
+
+Warning: Using a default value of 0.4 for maximum step size.  The simulation step size will be
+equal to or less than this value.  You can disable this diagnostic by setting 'Automatic solver
+parameter selection' diagnostic to 'none' in the Diagnostics page of the configuration
+parameters dialog.
+Warning: Using a default value of 0.4 for maximum step size.  The simulation step size will be
+equal to or less than this value.  You can disable this diagnostic by setting 'Automatic solver
+parameter selection' diagnostic to 'none' in the Diagnostics page of the configuration
+parameters dialog.
+Warning: Using a default value of 0.4 for maximum step size.  The simulation step size will be
+equal to or less than this value.  You can disable this diagnostic by setting 'Automatic solver
+parameter selection' diagnostic to 'none' in the Diagnostics page of the configuration
+parameters dialog.
+Warning: Using a default value of 0.4 for maximum step size.  The simulation step size will be
+equal to or less than this value.  You can disable this diagnostic by setting 'Automatic solver
+parameter selection' diagnostic to 'none' in the Diagnostics page of the configuration
+parameters dialog.
+Warning: Using a default value of 0.4 for maximum step size.  The simulation step size will be
+equal to or less than this value.  You can disable this diagnostic by setting 'Automatic solver
+parameter selection' diagnostic to 'none' in the Diagnostics page of the configuration
+parameters dialog.
+>> Q3 = [1 0 0 ; -1 1 0; -1 0 1]
+
+Q3 =
+
+     1     0     0
+    -1     1     0
+    -1     0     1
+
+>> A2barra = inv(Q3)*A*Q3
+
+A2barra =
+
+   -0.5000    0.5000   -0.5000
+         0    1.0000   -1.0000
+         0    1.2500   -1.0000
+
+>> B2barra = inv(Q3)*B
+
+B2barra =
+
+    0.5000
+         0
+         0
+
+>> C2barra = C*Q3
+
+C2barra =
+
+     0    -2     0
+
+>> G3 = tf(A2barra,B2barra)
+??? Error using ==> tf.tf at 251
+The values of the "num" and "den" properties must be row vectors or cell arrays of row vectors,
+where each vector is nonempty and containing numeric data. Type "ltiprops tf" for more
+information.
+
+>> P2 = ss(A2barra,B2barra,C2barra,D2barra)
+??? Undefined function or variable 'D2barra'.
+
+>> D2barra = [2]
+
+D2barra =
+
+     2
+
+>> P2 = ss(A2barra,B2barra,C2barra,D2barra)
+ 
+a = 
+         x1    x2    x3
+   x1  -0.5   0.5  -0.5
+   x2     0     1    -1
+   x3     0  1.25    -1
+ 
+b = 
+        u1
+   x1  0.5
+   x2    0
+   x3    0
+ 
+c = 
+       x1  x2  x3
+   y1   0  -2   0
+ 
+d = 
+       u1
+   y1   2
+ 
+Continuous-time model.
+>> G3 = tf(P2)
+ 
+Transfer function:
+2
+ 
+>> G4 = zpk(P2)
+ 
+Zero/pole/gain:
+2

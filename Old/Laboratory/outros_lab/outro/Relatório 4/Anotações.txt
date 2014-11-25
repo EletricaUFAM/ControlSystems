@@ -1,0 +1,48 @@
+G(S) = (1/S³)/(1 + k1/S + k2/S² + 2/S + (k1/S * 2/S + k2/S² * 2/S))
+G(S) = 1/(S³ + (k1+2)S² + (k2 + 2k1)S + 2k2)
+
+ou fazer como 2 blocos separados
+
+G(S) = 1/(S² + k1S + k2) * 1/(S+2)
+
+
+
+
+raizes
+
+autovalor	amortecimento		frequencia do amortecido
+eig(A)
+
+macete para calcular inversao da matriz
+
+Pos multiplicado
+[a b] * [x] = [ax + by]
+[c d]	[y]   [cx + dy]
+
+[a] * x + [b] * y
+[c]	  [d]
+
+
+Pre multiplicado
+[x y] * [a b]	=	x*[a b] + [c d]*y
+	[c d]
+
+
+
+A^(-1) = 1/(det A) * Adjunta (A)
+Adjunta = cof * (A transposta)
+A13 = (-1)^(1+3)*[-1 S] = 1
+		 [0 -1]
+
+qm manda no comportamento do sistema eh o polo dominante (polo + prto da origem)
+
+se polo dominante é real
+
+graficamente fica
+
+
+    _____
+   /
+  /
+ /
+/

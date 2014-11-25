@@ -1,0 +1,23 @@
+A planta 1 é:
+
+b) Linear pois os valores apresentados no gráfico planta1-saída-final são muito próximos de zero estando dentro da tolerância já que foi resultado do cálculo do computador.
+d) Dinâmico pois a saída apresenta valores diferentes para uma mesma entrada.
+e) Determinístico porque a saída tem precisão.
+
+A planta 2 é:
+
+b) Não linear pois a diferença entre os sinais planta2-aditiva e planta2-aditiva2 é diferente de zero.
+d) Dinâmico pois a saída apresenta valores diferentes para uma mesma entrada.
+e) Determinístico porque a saída tem precisão.
+
+A planta 3 é:
+
+b) Linear pois os valores apresentados no gráfico planta3-saída-final são muito próximos de zero estando dentro da tolerância já que foi resultado do cálculo do computador.
+d) Instantâneo pois a saída apresenta valores iguais para uma mesma entrada.
+e) Determinístico porque a saída tem precisão.
+
+A planta 4 é:
+
+b) Não linear pois a diferença entre os sinais planta2-aditiva e planta2-aditiva2 é diferente de zero.
+d) Instantâneo pois a saída apresenta valores iguais para uma mesma entrada.
+e) É estocástico pois demonstrou variabilidade na saída, a saída não teve precisão absoluta na resposta ao impulso de entrada.

@@ -1,0 +1,28 @@
+ACHAPEU = Q2 * ABARRA * inv( Q2 )
+BCHAPEU = Q2 * BBARRA
+CCHAPEU = CBARRA * inv( Q2 )
+DCHAPEU = D
+
+
+ACHAPEU =
+
+   -0.5000   -0.1667    0.3333
+         0   -0.5000    1.0000
+         0   -0.2500         0
+
+
+BCHAPEU =
+
+   -0.7500
+   -0.7500
+         0
+
+
+CCHAPEU =
+
+     0     1     0
+
+
+DCHAPEU =
+
+    1.5000

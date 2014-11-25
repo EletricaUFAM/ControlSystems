@@ -1,0 +1,34 @@
+A = [1 1 0;-12 0 1; 20 0 0]
+
+B = [0;1;1]
+
+C = [21 -1 1]
+
+D=[0]
+
+D1 = poly(A)
+
+D2 = conv([1 5],[1 (2*0.6*4) 16])
+
+
+D3 = D2-D1
+
+LBARRA = D3(2:4)
+
+Vc = [B A*B (A^2*B)]
+
+MUL = [1 -1 12;0 1 -1;0 0 1]
+
+Q = Vc*MUL
+
+QINV = inv(Q)
+
+ABARRA = QINV*A*Q
+
+BBARRA = QINV*B
+
+CBARRA = C*Q
+
+L = LBARRA*QINV
+
+TES =  (ABARRA - BBARRA*LBARRA)

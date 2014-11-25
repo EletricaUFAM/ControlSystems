@@ -1,0 +1,104 @@
+%%%%%%%%%%%%%%%%%%%%%%Matriz do servomotor DC%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%Valores%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%indutancia%%
+L = 100;
+
+%%Resistencia%%
+R = 50;
+
+%%????%%%
+Kb = 0.08;
+
+%%%????%%%%
+Kt = 10;
+
+%%%%%%%%inércia%%%%%%%%%%%%
+Jm = 8;
+J2 = 4;
+J3 = 20;
+%%%%%%%%coeficente de atrito%%%%%
+B1 = 0.2;
+B2 = 0.4;
+B3 = 0.8;
+%%%%%%%%%Matriz x%%%%%%%%%%%
+ia = 2;
+w1 = 2;
+teta1 = 10;
+x1 = ia;
+x2 = w1;
+x3 = teta1;
+%%%%numero de dentes das engrenagens trem 1%%%%%
+n11 = 10;
+n21 = 50;
+n31 = 10;
+n41 = 20;
+
+%%%%Numero de dentes das engrenagens trem 2%%%%%
+n12 = 10;
+n22 = 80;
+n32 = 40;
+n42 = 50;
+%%%%%%%%%%%%%%%Matrizes da modelagem%%%%%%%%%%
+Rb = 3;
+Jf = 2;
+
+Beq = B1 + ((n11/n21)^2)*B2 + ((n31/n41)^2)*((n11/n21)^2)*B3;
+
+Jeq = Jm + ((n11/n21)^2)* J2 + ((n31/n41)^2)*((n11/n21)^2)*J3;
+A = [(-R/L) (-Rb/L) 0; (Kt/Jf) (-Beq/Jeq) 0; 0 1 0];
+B = [1/L; 0; 0];
+C = [0 1 0; 0 0 1];
+D = [0;0];
+
+P = ss(A, B, C, D);
+G = tf(P);
+Gp = zpk(G);
+
+%%%%%%Relações entre numero de dentes das engrenagens, variação angular,
+%%%%%%velocidade angular e torque%%%%%%%%%%%
+teta2 = 20;
+w2 = 3;
+kN = n11/n21;
+kt = teta1/teta2;
+kw = w1/w2;
+kT = T1/T1;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%Modelagem%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%Torques%%%%%%%%%%%%%
+T3 = 5;
+s = 0.5;
+T1 = n11/n21*((J2*s+B1)*n11/n21*w1+T3);
+T2 = (J2*s + B1)*w2 + T3;
+Tm = (Jm*s+B1)*w1 + T1;
+
+%%%%%???????%%%%%%%
+R1 = 20;
+kb = 6;
+eb = kb*w1;
+R2 = 30;
+teta1  = teta2 * R2/R1;
+teta2 = n11*teta1/n21;
+R1 = (w2*R2)/w1;
+T1 = (T2*w2)/w1;
+%%%%%%%%x%%%%%%%%%%%%%
+x = [x1; x2; x3];
+
+%%%%%??????????%%%%%%%%%%%
+u = inline(
+u = ;
+xponto =  A*x + B*u;
+
+%%%%%%???????%%%%%%%%%
+y(x) =  C * x + D;
+
+%%%%%%?????%%%%%%%
+y1(x) = [0 1 0; 0 0 1] * x;
+
+%%%%%????????%%%%%%%%%%%%
+y(x) = [0 (N1*N3/N2*N4) 0; 0 0 (N1*N3/N2*N4)] * x;
+
+
+

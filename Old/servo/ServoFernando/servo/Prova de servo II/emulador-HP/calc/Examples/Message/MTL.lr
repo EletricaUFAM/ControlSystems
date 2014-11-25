@@ -1,0 +1,85 @@
+Saturn Loader, Ver. version 3.0.3, 11/11/98
+
+
+Output Module:
+Module=temp.o
+  Start=00000 End=002CA Length=002CB   Symbols=  34 References=  57
+  Date=Fri Oct 04 16:31:41 2002   Title=
+
+
+Source modules:
+Module=_head.o
+  Start=00000 End=00046 Length=00047
+  Date=Fri Oct 04 16:31:41 2002   Title=                                        Fri Oct 04 16:31:41 2002
+
+Module=_table.o
+  Start=00047 End=000F4 Length=000AE
+  Date=Fri Oct 04 16:31:41 2002   Title=                                        Fri Oct 04 16:31:41 2002
+
+Module=MTL.o
+  Start=000F5 End=001E6 Length=000F2
+  Date=Fri Oct 04 16:31:41 2002   Title=                                        Fri Oct 04 16:31:41 2002
+
+Module=_message.o
+  Start=001E7 End=002A8 Length=000C2
+  Date=Fri Oct 04 16:31:41 2002   Title=                                        Fri Oct 04 16:31:41 2002
+
+Module=_config.o
+  Start=002A9 End=002C6 Length=0001E
+  Date=Fri Oct 04 16:31:41 2002   Title=                                        Fri Oct 04 16:31:41 2002
+
+Module=_end.o
+  Start=002C7 End=002CA Length=00004
+  Date=Fri Oct 04 16:31:41 2002   Title=                                        Fri Oct 04 16:31:41 2002
+
+Saturn Cross Reference Listing
+
+'                                *       - 00159 001BD
+
+CK0                              *       - 00101 00126 0018F
+CONFIG                           * 002A9 - 00042
+
+DOARRY                           *       - 001E7
+DOBINT                           *       - 00106 0012B 0013A 00144 00194 0019E
+                                 + 001A8 002B3
+DOCOL                            *       - 000FC 00121 0018A 002A9
+DOCSTR                           *       - 001F1
+DOHSTR                           *       - 00047 000DC
+DOLIB                            *       - 00000
+DOROMP                           *       - 0014E 0015E 0016E 001B2 001C2 001D2
+DROP                             *       - 00179 001DD
+
+ERRBEEP                          *       - 00169 001CD
+ERROROUT                         *       - 00110
+
+HOMEDIR                          *       - 002AE
+HasH3ED                          * 00047 - 00033
+
+JstGETTHEMSG                     *       - 00135
+
+LIB3ED                           * 00005 -
+LinK3ED                          * 000DC - 0003D
+
+Messages                         * 001E7 - 00038
+
+ROMID3ED                         = 003ED -
+RomId                            = 003ED -
+
+SEMI                             *       - 00115 0017E 001E2 002C2
+SYS3ED                           * 00030 -
+SYSEND3ED                        * 002CB - 00005
+
+XEQSETLIB                        *       - 002BD
+
+xBtn1                            * 000FC - 000E6
+xBtn2                            * 00121 - 000EB
+xBtn3                            * 0018A - 000F0
+
+~DoMsgBox                        *       - 00173 001D7
+~MsgBoxMenu                      *       - 00163 001C7
+~grobAlertIcon                   *       - 00153 001B7
+~xBtn1                           = 003ED - 000F6
+~xBtn2                           = 013ED - 0011B
+~xBtn3                           = 023ED - 00184
+
+/SLOAD:  End of Saturn Loader Execution

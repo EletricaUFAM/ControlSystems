@@ -1,0 +1,174 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      -->
+      <title>questaotresa</title>
+      <meta name="generator" content="MATLAB 7.4">
+      <meta name="date" content="2008-12-07">
+      <meta name="m-file" content="questaotresa"><style>
+
+body {
+  background-color: white;
+  margin:10px;
+}
+
+h1 {
+  color: #990000; 
+  font-size: x-large;
+}
+
+h2 {
+  color: #990000;
+  font-size: medium;
+}
+
+/* Make the text shrink to fit narrow windows, but not stretch too far in 
+wide windows. */ 
+p,h1,h2,div.content div {
+  max-width: 600px;
+  /* Hack for IE6 */
+  width: auto !important; width: 600px;
+}
+
+pre.codeinput {
+  background: #EEEEEE;
+  padding: 10px;
+}
+@media print {
+  pre.codeinput {word-wrap:break-word; width:100%;}
+} 
+
+span.keyword {color: #0000FF}
+span.comment {color: #228B22}
+span.string {color: #A020F0}
+span.untermstring {color: #B20000}
+span.syscmd {color: #B28C00}
+
+pre.codeoutput {
+  color: #666666;
+  padding: 10px;
+}
+
+pre.error {
+  color: red;
+}
+
+p.footer {
+  text-align: right;
+  font-size: xx-small;
+  font-weight: lighter;
+  font-style: italic;
+  color: gray;
+}
+
+  </style></head>
+   <body>
+      <div class="content">
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Diagrama de Bode %%</a></li>
+               <li><a href="#2">Diagrama Polar Direto %%</a></li>
+            </ul>
+         </div>
+         <h2>Diagrama de Bode %%<a name="1"></a></h2><pre class="codeinput"><span class="comment">%Planta</span>
+num = [1 1];
+den = [1 38 321 -760 400];
+
+t = tf(num, den)
+zpk(t)
+<span class="comment">%Grafico</span>
+figure(1)
+bode(num,den)
+grid <span class="string">on</span>;
+
+
+<span class="comment">%%Gera diagrama de Bode entre 0,01 rad/s e 1000 rad/s</span>
+w = logspace(-1,2);
+[mag, phase, w]= bode(num, den, w);
+
+<span class="comment">%magnitude convertida em Decibeis</span>
+ magdB = 20 * log10(mag);
+</pre><pre class="codeoutput"> 
+Transfer function:
+               s + 1
+------------------------------------
+s^4 + 38 s^3 + 321 s^2 - 760 s + 400
+ 
+ 
+Zero/pole/gain:
+     (s+1)
+----------------
+(s+20)^2 (s-1)^2
+ 
+</pre><img vspace="5" hspace="5" src="questaotresa_01.png"> <h2>Diagrama Polar Direto %%<a name="2"></a></h2><pre class="codeinput"><span class="comment">% encontra as raizes</span>
+roots(den)
+figure(2)
+
+<span class="comment">%Diagrama%</span>
+nyquist(num,den)
+grid <span class="string">on</span>;
+<span class="comment">%encontra o ganho de fase e de</span>
+figure(3)
+<span class="comment">%1margin(num,den)</span>
+rlocus(num, den)
+grid <span class="string">on</span>;
+</pre><pre class="codeoutput">
+ans =
+
+-20.000000371251694                     
+-19.999999628748323                     
+  0.999999999999999 + 0.000000023256003i
+  0.999999999999999 - 0.000000023256003i
+
+</pre><img vspace="5" hspace="5" src="questaotresa_02.png"> <img vspace="5" hspace="5" src="questaotresa_03.png"> <p class="footer"><br>
+            Published with MATLAB&reg; 7.4<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Diagrama de Bode %%
+%Planta
+num = [1 1];
+den = [1 38 321 -760 400];
+
+t = tf(num, den)
+zpk(t)
+%Grafico
+figure(1)
+bode(num,den)
+grid on;
+
+
+%%Gera diagrama de Bode entre 0,01 rad/s e 1000 rad/s
+w = logspace(-1,2);
+[mag, phase, w]= bode(num, den, w);
+
+%magnitude convertida em Decibeis
+ magdB = 20 * log10(mag);
+ 
+%% Diagrama Polar Direto %%
+
+% encontra as raizes
+roots(den)
+figure(2)
+
+%Diagrama%
+nyquist(num,den)
+grid on;
+%encontra o ganho de fase e de 
+figure(3)
+%1margin(num,den)
+rlocus(num, den)
+grid on;
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

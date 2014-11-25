@@ -1,0 +1,145 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{preamble}
+
+\begin{document}
+
+\begin{enumerate}
+\item Classifique os seguintes sistemas. Justifique as respostas.
+\begin{enumerate}
+\item $\frac{dy(t)}{dt} + ty(t) = u(t)$
+
+\underline{Resposta:}
+
+ Tomando-se $T=t+\tau\; ({\rm cte}) \rightarrow dT=dt$ temos $dy(T)/dT = dy(T)/dt$
+ \[\frac{dy(T)}{dT}+(T-\tau)y(T) = u(T) =\]
+ \[\frac{dy(T)}{dt}+Ty(T) = u(T) + {\color{red} \tau y(T)},\]
+ o que mostra que o sistema depende do tempo.
+
+\item $y(t) = \int_{-\infty}^{t} e^{(t-\tau)^2}u(\tau)d\tau$
+
+\underline{Resposta:}
+
+ O sistem é linear, pois 
+ \[y(t) = \int_{-\infty}^{t} e^{(t-\tau)^2}(u_1(\tau)+u_2(\tau))d\tau = \int_{-\infty}^{t}
+e^{(t-\tau)^2}u_1(\tau)d\tau + \int_{-\infty}^{t} e^{(t-\tau)^2}u_2(\tau)d\tau,\]
+
+ pela linearidade da integral. Como
+ \[y(t) = (e^{t^2})\ast u(t)\]
+ vemos que a função de transferência do sistema $h(t) = e^{t^2}$ depende do tempo, logo o sistema
+tambem.
+
+\item $y(t) = \int_{-\infty}^{t} e^{t^2-\tau^2}u(\tau)d\tau$
+
+\underline{Resposta:}
+
+ O sistema é linear, pelo mesmo motivo apresentado acima. 
+
+\item $y(t) = \sin(u(t))$
+
+\underline{Resposta:}
+
+ O sistema não tem memoria, pois ao anularmos a entrada $u(t) = 0$ a saída tambem é anulada.
+
+\item $y(k-2) -\frac{5}{6}y(k-1)+\frac{1}{6}y(k) = u(k-1)+\frac{1}{2}u(k)$
+
+\underline{Resposta:}
+
+ O sistema é de tempo discreto. 
+
+\end{enumerate}
+\item A resposta ao impulso unitário de um sistema linear e invariante no tempo é mostrado na figura
+abaixo a esqueda. Determine a respota ao sinal $u(t)$ mostrado na figura abaixo a direita.
+
+\underline{Resposta:}
+
+ A resposta ao degrau de um sinal é a integral da resposta deste sinal ao impulso no tempo
+observador, ou seja, se a resposta do sistema ao impulso é
+ \[y_{\rm impulso}(t) = t\delta_{-1}(t)-2(t-1)\delta_{-1}(t-1)+(t-2)\delta_{-1}(t-2)\]
+ então sua resposta ao degrau é
+ \[y_{\rm degrau}(t) = \frac{t^2}{2}\delta_{-1}(t)-(t-1)^2\delta_{-1}(t-1)+\frac{(t-2)^2}{2}\delta_{-1}(t-2).\] 
+ Como o sistema é invariante e linear no tempo a resposta requerida é
+ \[y_{\rm degrau}(t)\delta_{-1}(t)-2y_{\rm degrau}(t)\delta_{-1}(t-1),\]
+ pois o sinal de entrada é 
+ \[\delta_{-1}(t)-2\delta_{-1}(t-1).\]
+ Logo temos
+ \[R(t) = \]
+
+\item Determine a transformada de Laplace dos sinais definidos nos itens a seguir para $t \geq 0$.
+\begin{enumerate}
+\item $u(t) = (t-1)e^{-3(t+1)}$
+
+\underline{Resposta:}
+
+ Produto por $t$
+ \[\mathcal{L} \{tf(t)\} = \int_{0^-}^{\infty} tf(t)e^{-st} dt = -\frac{\partial }{\partial s}
+\int_{0^-}^\infty f(t)e^{-st} dt = -\frac{\partial }{\partial s}\mathcal{L} \{f(t)\}\]
+
+
+ \[\int^{-\infty}_{0^-} (t-1)e^{-3(t+1)}e^{-st}dt = e^{-3}\left(\frac{\partial }{\partial
+s}\frac{1}{s+3}-\frac{1}{s+3}\right) = e^{-3} \left(-\frac{1}{(s+3)^2}-\frac{1}{s+3}\right)\]
+\[ = -e^{-3}\frac{s+4}{(s+3)^2}\]
+\item $u(t) = 2te^{-2t}\cos 3t$
+
+\[\mathcal{L}(u(t) = -2\frac{\partial}{\partial s}\frac{s+2}{(s+2)^2+9} =
+-2\left(\frac{1}{s^2+4s+13}-\frac{s+2}{(s^2+4s+13)^2}\right)=\]
+\[=-2\frac{s^2+3s+11}{(s^2+4s+13)^2}\]
+
+\item $u(t) = \sin 2t \cdot \cos 2t \Rightarrow u(t) = \frac{\sin(4t)}{2}$
+
+\[\mathcal{L}\{u\} = \frac{1}{2}\frac{4}{s^2+16}\]
+
+\item $u(t) = 3(1-e^{-3t})$
+\[\mathcal{L}\{u\} = \frac{3}{s}-3\frac{1}{s+3} = 3\frac{3}{s+3}\]
+
+\end{enumerate}
+\item Determine a transformada de Laplace inversa dos sinais definidos nos itens a seguir.
+\begin{enumerate}
+\item $U(s)  = \dfrac{10}{(s+4)(s^2+4)}$
+ \[U(s) = \frac{1}{2}\left(\frac{1}{s+4}-\frac{s-4}{(s^2+4)}\right)\]
+\[u(t) = \frac{e^{-4t}}{2}-\frac{\cos(2t)}{2}+\sin(2t)\]
+
+\item $U(s)  = \dfrac{1}{(s+1)^3}$
+ \[u(t) = \frac{t^2}{2}e^{-t}\]
+
+\item $U(s) = \frac{10(s+2)}{s(s+1)(s^2+2s+2)}$
+ \[U(s) = \frac{10}{s}-\frac{10}{s+1}-\frac{10}{(s+1)^2+1}\Rightarrow\]
+ \[u(t) = 10-10e^{-t}-10\sin(t)e^{-t}\]
+\item $U(s) = \frac{e^{-2s}}{s^2(s+2)}$
+ \[\mathcal{L}\{f(t-t_0\delta_{-1}(t-t_0)\} = \mathcal{L}\{f(t)\}e^{-t_0s} \]
+ \[U(s) =
+e^{-2s}\left(\frac{1}{4}\frac{1}{s+2}-\frac{1}{2}\frac{1}{s^2}+\frac{1}{4}\frac{1}{s}\right)\Rightarrow\]
+ \[u(t) = \frac{1}{4}e^{-2(t+2)}\]
+
+\item Determine a função de transferência para cada uma dos sistemas
+\end{enumerate}
+
+
+
+
+\item 11) Um filtro do tipo noch é mostrado na figura, tome $R_1=R_2=R$,$C_1=C_2=C$ e $C_3=2C$.
+\begin{enumerate}
+\item Modele o filtro por espaço de estado
+
+\underline{Resposta:}
+
+\[\begin{array}{|c|c|}
+(e_1-V_i)/R_17
+\end{array}\]
+
+
+\item
+\item 
+\end{enumerate}
+
+
+
+
+
+
+
+
+\end{enumerate}
+
+
+\end{document}

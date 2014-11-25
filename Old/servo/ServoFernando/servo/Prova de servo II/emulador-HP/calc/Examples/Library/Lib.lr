@@ -1,0 +1,76 @@
+Saturn Loader, Ver. version 3.0.3, 11/11/98
+
+
+Output Module:
+Module=temp.o
+  Start=00000 End=0017C Length=0017D   Symbols=  25 References=  30
+  Date=Fri Oct 04 16:31:29 2002   Title=
+
+
+Source modules:
+Module=_head.o
+  Start=00000 End=00044 Length=00045
+  Date=Fri Oct 04 16:31:29 2002   Title=                                        Fri Oct 04 16:31:29 2002
+
+Module=_table.o
+  Start=00045 End=000EC Length=000A8
+  Date=Fri Oct 04 16:31:29 2002   Title=                                        Fri Oct 04 16:31:29 2002
+
+Module=123.o
+  Start=000ED End=00116 Length=0002A
+  Date=Fri Oct 04 16:31:29 2002   Title=                                        Fri Oct 04 16:31:29 2002
+
+Module=456.o
+  Start=00117 End=00140 Length=0002A
+  Date=Fri Oct 04 16:31:29 2002   Title=                                        Fri Oct 04 16:31:29 2002
+
+Module=Add.o
+  Start=00141 End=0015A Length=0001A
+  Date=Fri Oct 04 16:31:29 2002   Title=                                        Fri Oct 04 16:31:29 2002
+
+Module=_config.o
+  Start=0015B End=00178 Length=0001E
+  Date=Fri Oct 04 16:31:29 2002   Title=                                        Fri Oct 04 16:31:29 2002
+
+Module=_end.o
+  Start=00179 End=0017C Length=00004
+  Date=Fri Oct 04 16:31:29 2002   Title=                                        Fri Oct 04 16:31:29 2002
+
+Saturn Cross Reference Listing
+
+%+                               *       - 00151
+
+CK0NOLASTWD                      *       - 000F8 00122
+CK2NOLASTWD                      *       - 0014C
+CONFIG                           * 0015B - 00040
+
+DOBINT                           *       - 00165
+DOCOL                            *       - 000F3 0011D 00147 0015B
+DOHSTR                           *       - 00045 000D4
+DOLIB                            *       - 00000
+DOREAL                           *       - 000FD 00127
+
+HOMEDIR                          *       - 00160
+HasH203                          * 00045 - 00031
+
+LIB203                           * 00005 -
+LinK203                          * 000D4 - 0003B
+
+ROMID203                         = 00203 -
+RomId                            = 00203 -
+
+SEMI                             *       - 00112 0013C 00156 00174
+SYS203                           * 0002E -
+SYSEND203                        * 0017D - 00005
+
+XEQSETLIB                        *       - 0016F
+
+x123                             * 000F3 - 000DE
+x456                             * 0011D - 000E3
+xAdd                             * 00147 - 000E8
+
+~x123                            = 00203 - 000ED
+~x456                            = 01203 - 00117
+~xAdd                            = 02203 - 00141
+
+/SLOAD:  End of Saturn Loader Execution

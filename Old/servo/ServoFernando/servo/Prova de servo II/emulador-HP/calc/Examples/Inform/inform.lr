@@ -1,0 +1,111 @@
+Saturn Loader, Ver. version 3.0.3, 11/11/98
+
+
+Output Module:
+Module=temp.o
+  Start=00000 End=0062C Length=0062D   Symbols=  46 References= 108
+  Date=Sat Dec 07 11:22:24 2002   Title=
+
+
+Source modules:
+Module=_head.o
+  Start=00000 End=00060 Length=00061
+  Date=Sat Dec 07 11:22:24 2002   Title=                                        Sat Dec 07 11:22:24 2002
+
+Module=_table.o
+  Start=00061 End=000EA Length=0008A
+  Date=Sat Dec 07 11:22:24 2002   Title=                                        Sat Dec 07 11:22:24 2002
+
+Module=Inf.o
+  Start=000EB End=00427 Length=0033D
+  Date=Sat Dec 07 11:22:24 2002   Title=                                        Sat Dec 07 11:22:24 2002
+
+Module=Config.o
+  Start=00428 End=00445 Length=0001E
+  Date=Sat Dec 07 11:22:24 2002   Title=                                        Sat Dec 07 11:22:24 2002
+
+Module=Main.o
+  Start=00446 End=00465 Length=00020
+  Date=Sat Dec 07 11:22:24 2002   Title=                                        Sat Dec 07 11:22:24 2002
+
+Module=_message.o
+  Start=00466 End=00628 Length=001C3
+  Date=Sat Dec 07 11:22:24 2002   Title=                                        Sat Dec 07 11:22:24 2002
+
+Module=_end.o
+  Start=00629 End=0062C Length=00004
+  Date=Sat Dec 07 11:22:24 2002   Title=                                        Sat Dec 07 11:22:24 2002
+
+Saturn Cross Reference Listing
+
+'DROPFALSE                       *       - 00287 0028C 002BE 002F0 00318
+
+BINT0                            *       - 002FF
+BINT18                           *       - 00327
+BINT2                            *       - 002A5 002D7
+
+CONFIG                           * 00428 - 0005C 000E6
+
+DOARRY                           *       - 00466
+DOBINT                           *       - 00231 0023B 00251 0025B 00271 00336
+                                 + 0035F 00388 003BB 003E4 00408 00432
+DOCOL                            *       - 000EB 00428 0044C
+DOCSTR                           *       - 000F0 00470
+DOFLASHP                         *       - 00225 00245 00265 0027B 00417
+DOHSTR                           *       - 00061 000D2
+DOLIB                            *       - 00000
+DOLIST                           *       - 00296 002C8 0032C 00331 0035A 00383
+                                 + 003B6 003DF
+DOREAL                           *       - 00340 00369 00392 003C5 003EE
+DOROMP                           *       - 00451
+DROP                             *       - 0045C
+
+FALSE                            *       - 0030E 00313
+
+HOMEDIR                          *       - 0042D
+HasH202                          * 00061 - 0004D
+
+InfDemo                          * 000EB - 000E1
+InfDemoMesBase                   = 20201 - 00236 00256 00276 0033B 00364 0038D
+                                 + 003C0 003E9
+
+LIB202                           * 00005 -
+LinK202                          * 000D2 - 00057
+
+MINUSONE                         *       - 002AA 002AF 002B4 002B9 002DC 002E1
+                                 + 002E6 002EB 002FA 00304 00309 00322
+Messages                         * 00466 - 00052
+
+ONE                              *       - 00291 002C3
+
+ROMID202                         = 00202 -
+RomId                            = 00202 -
+
+SEMI                             *       - 002A0 002D2 00355 0037E 003A7 003AC
+                                 + 003DA 00403 00423 00441 00461
+SEVENTEEN                        *       - 003B1
+SYS202                           * 0004A -
+SYSEND202                        * 0062D - 00005
+
+THIRTYTWO                        *       - 002F5
+TWELVE                           *       - 0031D
+
+XEQSETLIB                        *       - 0043C
+
+ZERO                             *       - 0029B 002CD
+
+^IfMain2                         *       - 0041C
+^IfSetAllHelpStrings             *       - 0026A
+^IfSetAllLabelsMessages          *       - 0024A
+^IfSetTitle                      *       - 00280
+^IsUncompressDataString          *       - 0022A
+
+xDemo                            * 0044C - 000DC
+
+{}N                              *       - 00412
+
+~CONFIG                          = 02202 -
+~InfDemo                         = 01202 - 00456
+~xDemo                           = 00202 - 00446
+
+/SLOAD:  End of Saturn Loader Execution
